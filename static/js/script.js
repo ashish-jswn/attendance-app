@@ -2,6 +2,9 @@ document.getElementById('uploadForm').addEventListener('submit', function (event
     event.preventDefault();
     const formData = new FormData(this);
 
+    let resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = `<p>Processing...</p>`;  // Display the "Processing" message
+
     fetch('/upload', {
         method: 'POST',
         body: formData,
@@ -15,15 +18,24 @@ document.getElementById('uploadForm').addEventListener('submit', function (event
         return response.json();
     })
     .then(data => {
-        // Display results
-        let resultsDiv = document.getElementById('results');
+        // Clear the results div and display "Attendance Marked"
         resultsDiv.innerHTML = `<p>${data.message}</p>`;
-        if (data.uncertain_students && data.uncertain_students.length > 0) {
-            resultsDiv.innerHTML += `<p>Uncertain Students: ${data.uncertain_students.join(', ')}</p>`;
+
+        // Display buttons for downloading the Excel file and marked images
+        let downloadButtons = `
+            <button onclick="window.location.href='/download_excel'">Download Excel</button>
+        `;
+        
+        if (data.marked_images && data.marked_images.length > 0) {
+            data.marked_images.forEach(image => {
+                downloadButtons += `<button onclick="window.location.href='/download_image/${image.split('/').pop()}'">Download Marked Image</button>`;
+            });
         }
+
+        resultsDiv.innerHTML += downloadButtons;
     })
     .catch(error => {
         console.error('Error:', error);
-        document.getElementById('results').innerHTML = `<p>Error: ${error.message}</p>`;
+        resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
     });
 });

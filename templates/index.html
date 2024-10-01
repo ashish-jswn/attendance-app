@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attendance System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Attendance System</h1>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" name="image" id="imageInput" accept="image/*" multiple required>
-        <button type="submit">Upload Images</button>
-    </form>
-    <div id="results"></div>
+    <div class="container">
+        <h1>Smart Attendance System</h1>
+        <p class="subtitle">Upload class images to automatically mark attendance.</p>
+        
+        <form id="uploadForm" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="image" id="imageInput" accept="image/*" multiple required>
+            <button type="submit" class="upload-button">Upload Images</button>
+        </form>
+        
+        <div id="results" class="results-section"></div>
+    </div>
+
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
