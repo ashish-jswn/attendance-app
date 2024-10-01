@@ -1,0 +1,6 @@
+Flask
+Gunicorn
+face_recognition
+numpy
+pandas
+openpyxl

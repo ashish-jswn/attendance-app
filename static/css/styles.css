@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#uploadForm {
+    margin: 20px;
+}
+
+#results {
+    margin-top: 20px;
+}
