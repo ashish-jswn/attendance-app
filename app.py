@@ -94,9 +94,14 @@ def upload():
 def download_excel():
     return send_file('attendance.xlsx', as_attachment=True)
 
+<<<<<<< HEAD
 @app.route('/download_image/<image_filename>')
 def download_image(image_filename):
     return send_file(f'static/{image_filename}', as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
+=======
+# if __name__ == '__main__':
+#     app.run(debug=True)
+>>>>>>> 278facea17b6e5b05bfcdda3ce66fa8fa3b73b7c
